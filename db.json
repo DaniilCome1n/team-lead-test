@@ -17,8 +17,17 @@
     {
       "id": 1,
       "title": "Название поста",
-      "description": "Текст",
+      "description": "Consectetur duis voluptate deserunt enim nostrud aute et dolor incididunt nulla. Consequat mollit officia officia ad et ut eiusmod enim dolor nulla nulla excepteur nostrud ex. Enim minim et consequat esse fugiat esse deserunt deserunt dolore. Elit occaecat cupidatat Lorem velit sint excepteur fugiat. Consectetur ad et nulla in ut irure nisi cupidatat. Reprehenderit nostrud laboris officia amet ipsum in consequat magna elit commodo eiusmod commodo.",
       "claps": 0,
+      "createdAt": "2019-09-29T00:00:00.000Z",
+      "updateAt": "2019-09-29T00:00:00.000Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "title": "Название поста 2",
+      "description": "Текст",
+      "claps": 23,
       "createdAt": "2019-09-29T00:00:00.000Z",
       "updateAt": "2019-09-29T00:00:00.000Z",
       "userId": 1
