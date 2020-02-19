@@ -4,8 +4,8 @@
     <p class="description">{{description}}</p>
     <div v-if="!isGuest" class="btnGroup">
       <button v-if="isReader">{{claps}}</button>
-      <button v-if="isWriter">Change</button>
-      <button v-if="isWriter">Delete</button>
+      <button v-if="isWriter && isAuthor" @click="goToEditPost">Change</button>
+      <button v-if="isWriter && isAuthor">Delete</button>
     </div>
   </div>
 </template>
@@ -31,6 +31,24 @@ export default {
     },
     isGuest() {
       return this.$store.state.role === "";
+    },
+    isAuthor() {
+      return this.$store.state.userId === this.userId;
+    }
+  },
+  methods: {
+    goToEditPost() {
+      const data = {
+        id: this.id,
+        title: this.title,
+        description: this.description,
+        claps: 0,
+        createdAt: new Date(),
+        updateAt: new Date(),
+        userId: this.$store.state.userId
+      };
+      this.$store.dispatch("SET_EDIT_POST", data);
+      this.$router.push("/posts/editpost");
     }
   }
 };

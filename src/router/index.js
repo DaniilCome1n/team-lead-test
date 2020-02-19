@@ -4,6 +4,7 @@ import Home from "../components/Home.vue";
 import LoginView from "../views/LoginView.vue";
 import PostsView from "../views/PostsView.vue";
 import NewPostView from "../views/NewPostView.vue";
+import EditPostView from "../views/EditPostView.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     path: "/posts/newpost",
     name: "NewPostView",
     component: NewPostView
+  },
+  {
+    path: "/posts/editpost",
+    name: "EditPostView",
+    component: EditPostView
   }
 ];
 

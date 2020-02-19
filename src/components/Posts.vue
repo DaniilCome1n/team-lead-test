@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button size="is-medium" @click="goToNewPost">New Post</b-button>
+    <b-button v-if="isWriter" size="is-medium" @click="goToNewPost">New Post</b-button>
     <post
       v-for="post in postsArr"
       :key="post.id"
@@ -26,6 +26,9 @@ export default {
   computed: {
     postsArr() {
       return this.$store.state.posts;
+    },
+    isWriter() {
+      return this.$store.state.role === "writer";
     }
   },
   methods: {
@@ -34,8 +37,10 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("GET_POSTS");
-    console.log("mounted");
+    if (this.$store.state.posts.length == 0) {
+      this.$store.dispatch("GET_POSTS");
+      console.log("mounted");
+    }
   }
 };
 </script>

@@ -36,10 +36,9 @@ export default {
         claps: 0,
         createdAt: new Date(),
         updateAt: new Date(),
-        userId: this.$store.state.user.id
+        userId: this.$store.state.userId
       };
       this.$store.dispatch("SET_NEW_POST", data);
-      //   this.$store.dispatch("GET_POSTS");
       this.$router.push("/posts");
     }
   }
