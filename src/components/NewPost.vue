@@ -4,7 +4,7 @@
       <b-field label="Title" class="title">
         <b-input v-model="title" type="text"></b-input>
       </b-field>
-      <b-field label="Message" class="description">
+      <b-field label="Description" class="description">
         <b-input maxlength="500" type="textarea" v-model="description"></b-input>
       </b-field>
       <b-button type="is-primary" native-type="submit">New Post</b-button>
@@ -52,7 +52,6 @@ export default {
   border-radius: 10px;
   .title {
     color: rgb(45, 13, 58);
-    text-transform: uppercase;
   }
   .description {
     width: 500px;

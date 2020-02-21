@@ -48,84 +48,82 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    GET_USER: (context, payload) => {
+    GET_USER: async (context, payload) => {
       //Получаем от сервера объект с данными о пользователебчьи логин и пароль совпали
-      let login = payload.email;
-      let password = payload.password;
-      Axios.get(
-        `http://localhost:3000/users?login=${login}&password=${password}`
-      )
-        .then(response => {
-          const user = response.data[0];
-          const role = response.data[0].role;
-          const userId = response.data[0].id;
-          context.commit("GET_USER", user);
-          context.commit("GET_ROLE", role);
-          context.commit("GET_USER_ID", userId);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      try {
+        let login = payload.email;
+        let password = payload.password;
+        let response = await Axios.get(
+          `http://localhost:3000/users?login=${login}&password=${password}`
+        );
+        const user = response.data[0];
+        const role = response.data[0].role;
+        const userId = response.data[0].id;
+        context.commit("GET_USER", user);
+        context.commit("GET_ROLE", role);
+        context.commit("GET_USER_ID", userId);
+      } catch (error) {
+        console.error(error);
+      }
     },
 
-    GET_POSTS: context => {
+    GET_POSTS: async context => {
       //Получаем от сервера массив постов
-      Axios.get("http://localhost:3000/posts")
-        .then(response => {
-          const posts = response.data;
-          context.commit("GET_POSTS", posts);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      try {
+        let response = await Axios.get("http://localhost:3000/posts");
+        const posts = response.data;
+        context.commit("GET_POSTS", posts);
+      } catch (error) {
+        console.error(error);
+      }
     },
 
-    SET_NEW_POST: (context, payload) => {
+    SET_NEW_POST: async (context, payload) => {
       //Отправляем на сервер новый пост
-      Axios.post("http://localhost:3000/posts", payload)
-        .then(() => {
-          Axios.get("http://localhost:3000/posts").then(response => {
-            const posts = response.data;
-            context.commit("GET_POSTS", posts);
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      try {
+        await Axios.post("http://localhost:3000/posts", payload);
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        await context.dispatch("GET_POSTS");
+      } catch (error) {
+        console.error(error);
+      }
     },
 
     SET_EDIT_POST(context, payload) {
       context.commit("SET_EDIT_POST", payload);
     },
 
-    SET_CHANGES(context, payload) {
+    SET_CHANGES: async (context, payload) => {
       //Отправляем на сервер изменения редактированного поста
-      let id = payload.id;
-      Axios.patch(`http://localhost:3000/posts/${id}`, payload)
-        .then(() => {
-          Axios.get("http://localhost:3000/posts").then(response => {
-            const posts = response.data;
-            context.commit("GET_POSTS", posts);
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      try {
+        let id = payload.id;
+        await Axios.patch(`http://localhost:3000/posts/${id}`, payload);
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        await context.dispatch("GET_POSTS");
+      } catch (error) {
+        console.error(error);
+      }
     },
 
-    DELETE_POST(context, payload) {
+    DELETE_POST: async (context, payload) => {
       //Удаляем пост с сервера
-      let id = payload.id;
-      Axios.delete(`http://localhost:3000/posts/${id}`, payload)
-        .then(() => {
-          Axios.get("http://localhost:3000/posts").then(response => {
-            const posts = response.data;
-            context.commit("GET_POSTS", posts);
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      try {
+        let id = payload.id;
+        await Axios.delete(`http://localhost:3000/posts/${id}`, payload);
+      } catch (error) {
+        console.error(error);
+      }
+      try {
+        await context.dispatch("GET_POSTS");
+      } catch (error) {
+        console.error(error);
+      }
     }
   },
 

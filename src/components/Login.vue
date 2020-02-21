@@ -5,7 +5,7 @@
         <b-input type="email" placeholder="Enter your Email" maxlength="30" v-model="email"></b-input>
       </b-field>
 
-      <b-field label="Пароль">
+      <b-field label="Password">
         <b-input type="password" password-reveal v-model="password"></b-input>
       </b-field>
       <b-button type="is-primary" native-type="submit">Войти</b-button>
