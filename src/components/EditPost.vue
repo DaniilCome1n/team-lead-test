@@ -7,7 +7,7 @@
       <b-field class="description">
         <b-input maxlength="500" type="textarea" v-model="description"></b-input>
       </b-field>
-      <b-button native-type="submit">Confirm changes</b-button>
+      <b-button native-type="submit" type="is-success">Confirm changes</b-button>
     </form>
   </div>
 </template>
