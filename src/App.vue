@@ -10,6 +10,10 @@ export default {
   components: { Home }
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+#app {
+  font-family: "Roboto", sans-serif;
+}
+</style>
 
 

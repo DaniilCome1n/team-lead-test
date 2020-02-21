@@ -1,5 +1,7 @@
 <template>
-  <new-post></new-post>
+  <div class=".mainBox">
+    <new-post></new-post>
+  </div>
 </template>
 
 <script>
@@ -11,3 +13,9 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.mainBox {
+  display: flex;
+  align-items: center;
+}
+</style>

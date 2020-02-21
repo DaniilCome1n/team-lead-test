@@ -1,5 +1,7 @@
 <template>
-  <EditPost></EditPost>
+  <div class="mainBox">
+    <EditPost></EditPost>
+  </div>
 </template>
 
 <script>
@@ -9,3 +11,9 @@ export default {
   components: { EditPost }
 };
 </script>
+<style lang="scss">
+.mainBox {
+  display: flex;
+  align-items: center;
+}
+</style>

@@ -1,24 +1,66 @@
 # team-lead-test
 
-## Project setup
+### Приложение на Vue.js с использованием Vuex, Vue-route, buefy, json-server, axios.
+
+### На данный момент реализован следующий функционал:
+
+- Аутентификация ползователя на основе пары логин/пароль
+- Поведение приложения зависит от роли пользователя writer/reader
+
+## Клонируйте или скачайте репозиторий
+
+```
+git clone
+```
+
+## Установите npm зависимости
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+## Запустите json-server
+
+```
+npm run watch
+```
+
+## Запустите проект
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Функционал writer'а:
+
+- Может создавать посты
+- Редактировать существующие, если он является автором поста
+- Может удалять свои посты
+- Не может хлопать существующие посты
+
+### Функционал reader'а:
+
+- Может хлопать существующие посты
+- Не может создавать посты
+- Не может удалять посты
+- Не может редактировать посты
+
+### Функционал гостя
+
+- Может просматривать посты
+
+## Для того чтобы проверить функционал каждой роли необходимо использовать следующие данные
+
+#### Для reader'a
+
 ```
-npm run build
+Login : reader@mail.com
+Password: 123456
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+#### Для writer'a
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```
+Login : writer@mail.com
+Password: 123456
+```

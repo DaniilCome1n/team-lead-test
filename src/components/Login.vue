@@ -40,8 +40,13 @@ export default {
 
 <style lang="scss">
 .section {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
   width: 300px;
-  border: 1px solid black;
-  border-radius: 5px;
+  background-color: rgba(240, 240, 240, 0.322);
+  box-shadow: 5px 5px 5px rgba(121, 119, 119, 0.233);
+  border: 1px solid rgba(121, 119, 119, 0.233);
+  border-radius: 10px;
 }
 </style>

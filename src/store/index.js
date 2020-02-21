@@ -16,38 +16,40 @@ export default new Vuex.Store({
 
   mutations: {
     GET_USER(state, user) {
+      //Помещаем в стэйт объект с данными залогиненного пользователя
       state.user = user;
     },
+
     LOG_OUT_USER(state) {
+      //Удаляем данные залогинненого пользователя из стэйта
       state.user = {};
       state.role = "";
       state.userId = "";
     },
+
     GET_POSTS(state, posts) {
+      //помещаем в стэйт массив с постами
       state.posts = posts;
     },
+
     GET_ROLE(state, role) {
+      //Помещаем в стэйт роль текущего пользователя
       state.role = role;
     },
+
     GET_USER_ID(state, userId) {
+      //Помещаем в стэйт ID залогиненного пользователя
       state.userId = userId;
     },
-    SET_NEW_POST(state, newPost) {
-      state.posts.push(newPost);
-    },
+
     SET_EDIT_POST(state, editPost) {
+      //помещаем в стэйт пост,который в дальнейшем будет редактироваться
       state.editPost = editPost;
-    },
-    CHANGE_EDITED_POST(state) {
-      state.posts.map((item, editedPost) => {
-        if (item.id == editedPost.id) {
-          item = editedPost;
-        }
-      });
     }
   },
   actions: {
     GET_USER: (context, payload) => {
+      //Получаем от сервера объект с данными о пользователебчьи логин и пароль совпали
       let login = payload.email;
       let password = payload.password;
       Axios.get(
@@ -65,11 +67,11 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
+
     GET_POSTS: context => {
+      //Получаем от сервера массив постов
       Axios.get("http://localhost:3000/posts")
         .then(response => {
-          // console.log(response);
-          console.log(response.status);
           const posts = response.data;
           context.commit("GET_POSTS", posts);
         })
@@ -77,36 +79,54 @@ export default new Vuex.Store({
           console.log(error);
         });
     },
+
     SET_NEW_POST: (context, payload) => {
+      //Отправляем на сервер новый пост
       Axios.post("http://localhost:3000/posts", payload)
-        .then(response => {
-          const newpost = response.data;
-          context.commit("SET_NEW_POST", newpost);
+        .then(() => {
+          Axios.get("http://localhost:3000/posts").then(response => {
+            const posts = response.data;
+            context.commit("GET_POSTS", posts);
+          });
         })
         .catch(error => {
           console.log(error);
         });
     },
+
     SET_EDIT_POST(context, payload) {
       context.commit("SET_EDIT_POST", payload);
     },
-    SET_CHANGES(context, payload) {
-      let id = payload.id;
-      Axios.patch(`http://localhost:3000/posts/${id}`, payload).then(() => {
-        Axios.get("http://localhost:3000/posts").then(response => {
-          // console.log(response);
-          console.log(response.status);
-          const posts = response.data;
-          context.commit("GET_POSTS", posts);
-        });
-      });
-    }
 
-    // GET_USER: async context => {
-    //   let { data } = await Axios.get("http://localhost:3000/users");
-    //   console.log(data);
-    //   context.commit("SET_USERS", data);
-    // },
+    SET_CHANGES(context, payload) {
+      //Отправляем на сервер изменения редактированного поста
+      let id = payload.id;
+      Axios.patch(`http://localhost:3000/posts/${id}`, payload)
+        .then(() => {
+          Axios.get("http://localhost:3000/posts").then(response => {
+            const posts = response.data;
+            context.commit("GET_POSTS", posts);
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+
+    DELETE_POST(context, payload) {
+      //Удаляем пост с сервера
+      let id = payload.id;
+      Axios.delete(`http://localhost:3000/posts/${id}`, payload)
+        .then(() => {
+          Axios.get("http://localhost:3000/posts").then(response => {
+            const posts = response.data;
+            context.commit("GET_POSTS", posts);
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   },
 
   modules: {}

@@ -1,5 +1,7 @@
 <template>
-  <login></login>
+  <div class="mainBox">
+    <login></login>
+  </div>
 </template>
 
 <script>
@@ -9,3 +11,10 @@ export default {
   components: { Login }
 };
 </script>
+<style lang="scss">
+.mainBox {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+</style>
