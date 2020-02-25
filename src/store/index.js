@@ -63,7 +63,7 @@ export default new Vuex.Store({
         context.commit("GET_ROLE", role);
         context.commit("GET_USER_ID", userId);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     },
 
@@ -74,7 +74,7 @@ export default new Vuex.Store({
         const posts = response.data;
         context.commit("GET_POSTS", posts);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     },
 
@@ -83,12 +83,12 @@ export default new Vuex.Store({
       try {
         await Axios.post("http://localhost:3000/posts", payload);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
       try {
         await context.dispatch("GET_POSTS");
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     },
 
@@ -102,12 +102,12 @@ export default new Vuex.Store({
         let id = payload.id;
         await Axios.patch(`http://localhost:3000/posts/${id}`, payload);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
       try {
         await context.dispatch("GET_POSTS");
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     },
 
@@ -117,12 +117,12 @@ export default new Vuex.Store({
         let id = payload.id;
         await Axios.delete(`http://localhost:3000/posts/${id}`, payload);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
       try {
         await context.dispatch("GET_POSTS");
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     }
   },

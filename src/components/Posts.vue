@@ -81,7 +81,6 @@ export default {
   mounted() {
     if (this.$store.state.posts.length == 0) {
       this.$store.dispatch("GET_POSTS");
-      console.log("mounted");
     }
   }
 };
