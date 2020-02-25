@@ -30,9 +30,6 @@ export default {
         password: this.password
       });
       this.$router.push("/posts");
-    },
-    test() {
-      console.log(this.$store.state.user.role);
     }
   }
 };
