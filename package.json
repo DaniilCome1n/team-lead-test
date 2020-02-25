@@ -6,9 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "watch": "json-server --watch db.json",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "watch": "json-server --watch db.json"
   },
   "dependencies": {
     "axios": "^0.19.2",
